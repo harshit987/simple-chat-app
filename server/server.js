@@ -21,6 +21,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var auth = require('./routes/chat.route.auth.js');
 app.use('/',auth);
 
+var account = require('./routes/chat.route.account.js');
+app.use('/',account);
+
 //app.get is used to call a function when this route is called
 app.set('views', path.join(__dirname, '../client/views'));
 app.set('view engine', 'ejs');
