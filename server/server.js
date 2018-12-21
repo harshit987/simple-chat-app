@@ -3,6 +3,12 @@ var express= require('express');
 var app= express();
 var path = require('path');
 
+//use body-parser
+var bodyparser = require('body-parser');
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+
+
 //making database connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://harshit987:h8a1r18s19@ds139934.mlab.com:39934/mydb';

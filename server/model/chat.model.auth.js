@@ -7,4 +7,4 @@ var user =  new schema({
     hash_pass : String
 });
 
-var users = mongoose.model('users',user);
+module.exports = mongoose.model('users',user);
