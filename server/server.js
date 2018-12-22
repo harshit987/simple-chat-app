@@ -2,6 +2,11 @@
 var express= require('express');
 var app= express();
 var path = require('path');
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+
+
 
 //use body-parser
 var bodyparser = require('body-parser');
@@ -33,6 +38,21 @@ app.get('/',function(req,res){
     res.render('index.ejs');
 });
 
+io.on('connection',(socket) => {
+    console.log('new user connected');
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+      console.log(data);
+    });
+    socket.on('disconnect',function(socket){
+        console.log('a user disconnected');
+    });
+});
+
+
+
+
+
 //instruct the server to listen at port 3000
-app.listen(3000);
+server.listen(3000);
 

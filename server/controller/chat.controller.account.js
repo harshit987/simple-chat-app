@@ -1,3 +1,6 @@
 exports.home = function(req,res){
-    res.send('home.ejs');
+    res.render('home.ejs');
+};
+exports.superchat = function(req,res){
+    res.render('superchat.ejs');
 };
