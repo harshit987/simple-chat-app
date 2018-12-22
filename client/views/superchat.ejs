@@ -1,12 +1,28 @@
 <html>
-    <head>
-        <title>super-chat page</title>
-        <script src = "/socket.io/socket.io.js"></script>
-        <script>
-        var socket = io('http://localhost:3000');
-        </script>
-    </head>
-    <body>
-       hello world 
-    </body>
+  <head>
+    <title>super-chat page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      var message;
+      var socket = io("http://localhost:3000");
+
+      socket.on("show_message", function(data) {
+           $("p").append(data.my.message)
+           $("p").append("<br>")
+      });
+      
+      $(document).ready(function() {
+        $("#submit").click(function() {
+            socket.emit("send_message", { message : document.getElementById('message').value });
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <p id="chat_message"></p>
+    <input type="text" name="message" id="message" />
+    <button id="submit">Send message</button>
+  </body>
 </html>
