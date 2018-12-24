@@ -6,7 +6,7 @@
    
    <script>
       var message;
-      var socket = io("http://localhost:3000");
+      var socket = io();
      var username = "<%- user %>"
     socket.emit("new user",{user : username});
       

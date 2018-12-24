@@ -62,4 +62,4 @@ io.on('connection', socket => {
   })
 })
 // instruct the server to listen at port 3000
-server.listen(3000)
+server.listen(3000,'0.0.0.0')
