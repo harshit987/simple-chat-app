@@ -3,10 +3,18 @@
     <title>super-chat page</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+   
+   <script>
       var message;
       var socket = io("http://localhost:3000");
-
+     var username = "<%- user %>"
+    socket.emit("new user",{user : username});
+      
+      socket.on("user",function(data){
+          
+        $("p").append(data.user.user)
+           $("p").append("<br>")
+      });
       socket.on("show_message", function(data) {
            $("p").append(data.my.message)
            $("p").append("<br>")
@@ -22,6 +30,7 @@
   </head>
   <body>
     <p id="chat_message"></p>
+   
     <input type="text" name="message" id="message" />
     <button id="submit">Send message</button>
   </body>

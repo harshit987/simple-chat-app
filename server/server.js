@@ -13,7 +13,7 @@ app.use(
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
   })
 )
 
@@ -48,8 +48,12 @@ app.get('/', function (req, res) {
 })
 
 io.on('connection', socket => {
+  
   console.log('new user connected')
-  socket.emit('signal')
+  socket.on('new user',function(data){
+    io.sockets.emit("user",{user : data});
+  });
+  
   socket.on("send_message", function (data) {
       io.sockets.emit("show_message",{my : data})
   })
@@ -57,6 +61,5 @@ io.on('connection', socket => {
     console.log('a user disconnected')
   })
 })
-
 // instruct the server to listen at port 3000
 server.listen(3000)
