@@ -24,7 +24,6 @@ app.use(bodyparser.urlencoded({ extended: true }))
 
 // making database connection
 var mongoose = require('mongoose')
-var mongoDB = 'mongodb://harshit987:h8a1r18s19@ds139934.mlab.com:39934/mydb'
 mongoose.connect(
   mongoDB,
   { useNewUrlParser: true }
